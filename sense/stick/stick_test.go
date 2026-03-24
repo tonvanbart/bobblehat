@@ -1,14 +1,13 @@
 package stick
 
 import (
-	"io/ioutil"
 	"os"
 	"testing"
 	"time"
 )
 
 func TestStickWithEmptyDeviceFile(t *testing.T) {
-	tmpfile, err := ioutil.TempFile("", "example")
+	tmpfile, err := os.CreateTemp("", "example")
 	if err != nil {
 		t.Fatal(err)
 	}

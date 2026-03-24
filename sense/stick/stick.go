@@ -61,7 +61,7 @@ func (d *Device) pollEvents() {
 			return
 		}
 
-		events := (*(*[1<<27 - 1]Event)(unsafe.Pointer(&buf[0])))[:n/size]
+		events := unsafe.Slice((*Event)(unsafe.Pointer(&buf[0])), n/size)
 
 		for i := range events {
 			if e := events[i]; e.Type == 0x01 && e.Value != 0 {

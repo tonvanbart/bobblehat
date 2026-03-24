@@ -5,10 +5,11 @@ import (
 	"fmt"
 	"os"
 	"os/signal"
+	"syscall"
 
-	"github.com/nathany/bobblehat/sense/screen"
-	"github.com/nathany/bobblehat/sense/screen/color"
-	"github.com/nathany/bobblehat/sense/stick"
+	"github.com/tonvanbart/bobblehat/sense/screen"
+	"github.com/tonvanbart/bobblehat/sense/screen/color"
+	"github.com/tonvanbart/bobblehat/sense/stick"
 )
 
 func main() {
@@ -34,7 +35,7 @@ func main() {
 
 	// Set up a signals channel (stop the loop using Ctrl-C)
 	signals := make(chan os.Signal, 1)
-	signal.Notify(signals, os.Interrupt, os.Kill)
+	signal.Notify(signals, os.Interrupt, syscall.SIGTERM)
 
 	// Loop forever
 	for {

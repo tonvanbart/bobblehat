@@ -6,13 +6,12 @@ import (
 	"errors"
 	"image"
 	"image/color"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
 
-	rgb565color "github.com/nathany/bobblehat/sense/screen/color"
-	"github.com/nathany/bobblehat/sense/screen/texture"
+	rgb565color "github.com/tonvanbart/bobblehat/sense/screen/color"
+	"github.com/tonvanbart/bobblehat/sense/screen/texture"
 )
 
 // FrameBuffer is an 8x8 texture that can draw to the LED Matrix.
@@ -141,7 +140,7 @@ func getDevice(name string) (string, error) {
 	}
 
 	for _, dir := range matches {
-		b, err := ioutil.ReadFile(filepath.Join(dir, "name"))
+		b, err := os.ReadFile(filepath.Join(dir, "name"))
 		if err != nil {
 			continue
 		}
