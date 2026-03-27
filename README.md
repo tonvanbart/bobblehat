@@ -84,6 +84,20 @@ Gyroscope, Accelerometer, Magnetometer.
 
 Not yet implemented.
 
+### Sensors
+
+The `sense/sensors` package provides access to the Sense HAT's onboard sensors over I2C using [periph.io](https://periph.io) interfaces. Currently it supports reading temperature from the LPS25HB pressure sensor. The application provides an `i2c.Bus` (via `periph.io/x/host/v3`), and the package handles sensor initialization and register-level communication.
+
+```go
+dev, err := sensors.Open(bus)
+if err != nil {
+	log.Fatal(err)
+}
+defer dev.Close()
+
+temp, err := dev.Temperature() // °C as float64
+```
+
 ### Weather
 
 <img src="https://cdn.rawgit.com/nathany/bobblehat/master/gopher/weather.svg" width="200">
@@ -122,6 +136,10 @@ Copyright © 2016 bobbleHAT Authors.
 The original Go gopher © 2009 Renée French. Used under Creative Commons Attribution 3.0 license.
 
 Illustrations © 2016 Olga Shalakhina.
+
+### Dependencies
+
+* [periph.io](https://periph.io/) — hardware abstraction library for Go. The `sense/sensors` package uses `periph.io/x/conn/v3/i2c` for I2C bus access. Applications must also import `periph.io/x/host/v3` to register platform drivers.
 
 ### Related Projects
 
