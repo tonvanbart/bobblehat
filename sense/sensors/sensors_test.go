@@ -93,9 +93,9 @@ func TestOpenI2CError(t *testing.T) {
 
 func TestTemperature(t *testing.T) {
 	tests := []struct {
-		name    string
-		raw     int16
-		wantC   float64
+		name  string
+		raw   int16
+		wantC float64
 	}{
 		{"zero raw", 0, 42.5},
 		{"room temp ~22°C", -9840, 22.0},
